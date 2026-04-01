@@ -26,7 +26,7 @@ mis_prendas = st.sidebar.text_area(
 # SELECCIÓN DE EVENTO
 evento = st.sidebar.selectbox(
     "¿A dónde vas?",
-    ["Clases en la UNAM", "Cena formal", "Gimnasio", "Cita casual", "Trámite administrativo"]
+    ["Universidad", "Cena formal", "Gimnasio", "Cita casual", "Boda"]
 )
 
 # 4. CARGA DE LA FOTO
@@ -65,6 +65,7 @@ if st.button("✨ Analizar Estilo"):
         3. Basado en que el usuario tiene estas otras prendas: {mis_prendas}, 
            sugiere qué podría cambiar o añadir para mejorar el look.
         4. Sé honesto pero motivador, como un buen amigo con estilo.
+        5. Intenta ser sintético, fijate muy bien en los detalles pero que tu respuesta no sea demasiado larga.
         """
         
         with st.spinner("La IA está revisando tu estilo..."):
