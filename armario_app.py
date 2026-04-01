@@ -36,7 +36,7 @@ if foto is not None:
     imagen = Image.open(foto)
     st.image(imagen, caption="Tu outfit actual", use_container_width=True)
     
-   if st.button("✨ Analizar Estilo"):
+if st.button("✨ Analizar Estilo"):
         try:
             # Línea 1: El modelo con nombre completo
             model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
