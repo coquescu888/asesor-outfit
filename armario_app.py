@@ -39,7 +39,7 @@ if foto is not None:
 if st.button("✨ Analizar Estilo"):
         try:
             # Línea 1: El modelo con nombre completo
-            model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
+            model = genai.GenerativeModel(model_name="models/gemini-2.5-flash")
             
             # Línea 2: El prompt simplificado
             prompt = f"Actúa como experto en moda para: {evento}. Analiza colores, texturas y sugiere cambios con: {mis_prendas}."
