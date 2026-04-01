@@ -37,7 +37,15 @@ if foto is not None:
     st.image(imagen, caption="Tu outfit actual", use_container_width=True)
     
     if st.button("✨ Analizar Estilo"):
-        model = genai.GenerativeModel('gemini-1.5-flash-latest')
+       # CAMBIO ESTRATÉGICO: Usamos el nombre base sin el '-latest'
+        # o probamos con la versión Pro si la Flash sigue dando 404
+        try:
+            model = genai.GenerativeModel('gemini-1.5-flash') 
+            response = model.generate_content([prompt, imagen])
+        except Exception:
+            # Si el anterior falla, este es el modelo "tanque" que no falla:
+            model = genai.GenerativeModel('models/gemini-1.5-flash')
+            response = model.generate_content([prompt, imagen])
         
         # EL PROMPT MÁGICO (Instrucciones para la IA)
         prompt = f"""
