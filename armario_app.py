@@ -37,7 +37,7 @@ if foto is not None:
     st.image(imagen, caption="Tu outfit actual", use_container_width=True)
     
     if st.button("✨ Analizar Estilo"):
-       try:
+      try:
             # ESTE ES EL NOMBRE QUE LA V1BETA NO PUEDE IGNORAR:
             model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
             
@@ -51,7 +51,7 @@ if foto is not None:
                 
         except Exception as e:
             st.error(f"Error técnico: {e}")
-        
+            
         # EL PROMPT MÁGICO (Instrucciones para la IA)
         prompt = f"""
         Actúa como un experto en moda y colorimetría. 
