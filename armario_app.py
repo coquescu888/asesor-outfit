@@ -36,20 +36,23 @@ if foto is not None:
     imagen = Image.open(foto)
     st.image(imagen, caption="Tu outfit actual", use_container_width=True)
     
-    if st.button("✨ Analizar Estilo"):
-      try:
-            # ESTE ES EL NOMBRE QUE LA V1BETA NO PUEDE IGNORAR:
+   if st.button("✨ Analizar Estilo"):
+        try:
+            # Línea 1: El modelo con nombre completo
             model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
             
-            # El resto se queda igual
+            # Línea 2: El prompt simplificado
             prompt = f"Actúa como experto en moda para: {evento}. Analiza colores, texturas y sugiere cambios con: {mis_prendas}."
             
+            # Línea 3: El spinner
             with st.spinner("La IA está analizando tu estilo..."):
+                # Línea 4: La generación (lista con prompt e imagen)
                 response = model.generate_content([prompt, imagen])
                 st.subheader("📋 Veredicto de la IA")
                 st.markdown(response.text)
                 
         except Exception as e:
+            # Este 'except' DEBE estar alineado perfectamente con el 'try' de arriba
             st.error(f"Error técnico: {e}")
             
         # EL PROMPT MÁGICO (Instrucciones para la IA)
