@@ -37,19 +37,26 @@ if foto is not None:
     st.image(imagen, caption="Tu outfit actual", use_container_width=True)
     
     if st.button("✨ Analizar Estilo"):
-       with st.spinner("La IA está revisando tu estilo..."):
-            try:
-                # El nombre más simple y compatible
-                model = genai.GenerativeModel('gemini-1.5-flash')
-                
+        # Alineado perfectamente con el 'if' de arriba
+        try:
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            
+            # El prompt debe empezar exactamente a la misma altura que 'model'
+            prompt = f"""
+            Actúa como un experto en moda y estilismo. 
+            Contexto: {evento}.
+            Analiza la imagen: calificación 1-10, colores y texturas.
+            Sugerencias con estas prendas: {mis_prendas}.
+            """
+            
+            with st.spinner("La IA está revisando tu estilo..."):
                 # Enviamos la lista con el texto y la imagen
                 response = model.generate_content([prompt, imagen])
-                
                 st.subheader("📋 Veredicto de la IA")
                 st.markdown(response.text)
-            except Exception as e:
-                st.error(f"Error técnico: {e}")
-                st.info("Si ves un 404, intenta refrescar la página en 1 minuto.")
+                
+        except Exception as e:
+            st.error(f"Error técnico: {e}")
         
         # EL PROMPT MÁGICO (Instrucciones para la IA)
         prompt = f"""
